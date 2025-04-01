@@ -1,0 +1,221 @@
+/* 项目展示容器 - 使用flex布局实现多列排列 */
+.li1-box{
+  display: flex;
+  flex-wrap: wrap;  /* 允许项目换行 */
+  justify-content: space-between;  /* 项目之间均匀分布 */
+}
+
+/* 项目卡片基础样式 */
+.li1-box-item{
+  overflow: hidden;  /* 防止内容溢出 */
+  flex: 0 0 48%;  /* 每个项目占据48%宽度，形成两列布局 */
+  position: relative;  /* 为绝对定位的子元素提供参考 */
+  margin-bottom: 40px;  /* 项目之间的垂直间距 */
+}
+
+/* 鼠标悬停时图片缩放效果 */
+.li1-box-item:hover img{
+  transform: scale(1);  /* 图片恢复原始大小 */
+}
+
+/* 鼠标悬停时标题显示效果 */
+.li1-box-item:hover .boxitem-title{
+  bottom:0px;  /* 标题从底部滑入 */
+  opacity: 1;  /* 标题完全显示 */
+  transform: scale(1.2);  /* 标题轻微放大 */
+}
+
+/* 项目卡片中的图片样式 */
+.li1-box-item>img{
+  height: 100%;  /* 图片填充整个容器高度 */
+  transform: scale(1.1);  /* 图片轻微放大 */
+  transition: all .3s ease-in-out;  /* 添加过渡动画效果 */
+}
+
+/* 项目卡片标题样式 */
+.li1-box-item .boxitem-title{
+  position: absolute;  /* 绝对定位 */
+  bottom:-75px;  /* 初始位置在卡片下方 */
+  left:0px;
+  right: 0px;
+  height: 75px;  /* 标题区域高度 */
+  text-align: center;  /* 文字居中对齐 */
+  background-color: var(--headerhover);  /* 使用主题色变量 */
+  color: var(--headerFont);  /* 文字颜色使用主题变量 */
+  transition: all .3s ease-in-out;  /* 添加过渡动画效果 */
+  transform: scale(1);
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 标题文字样式 */
+.boxitem-title h6{
+  font-size: 12px;
+  margin: 5px 0;  /* 减小上下间距使文字更居中 */
+  width: 100%;
+  text-align: center;
+}
+
+.boxitem-title span {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 550px) {
+  .li1-box-item{
+    flex: auto;  /* 移动端下取消固定宽度 */
+    min-height: auto;  /* 取消最小高度限制 */
+  }
+}
+
+/* 新的项目展示布局 - 左右两栏布局 */
+.project-container {
+  display: flex;
+  justify-content: space-between;  /* 左右两栏均匀分布 */
+  gap: 30px;  /* 两栏之间的间距 */
+}
+
+/* 左侧项目卡片列表 */
+.project-list {
+  flex: 0 0 40%;  /* 占据40%宽度 */
+  display: flex;
+  flex-direction: column;  /* 垂直排列 */
+  gap: 20px;  /* 卡片之间的间距 */
+}
+
+/* 项目卡片样式 */
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;  /* 圆角边框 */
+  cursor: pointer;  /* 鼠标指针样式 */
+  transition: all 0.3s ease;  /* 过渡动画 */
+  border: 2px solid transparent;  /* 透明边框，用于激活状态 */
+  height: 180px;  /* 固定高度 */
+}
+
+/* 激活状态的卡片样式 */
+.project-card.active {
+  border-color: var(--mainColor);  /* 使用主题色作为边框 */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);  /* 添加阴影效果 */
+}
+
+/* 卡片图片悬停效果 */
+.project-card:hover img {
+  transform: scale(1);  /* 图片恢复原始大小 */
+}
+
+/* 卡片标题悬停效果 */
+.project-card:hover .boxitem-title {
+  bottom: 0px;  /* 标题从底部滑入 */
+  opacity: 1;  /* 标题完全显示 */
+  transform: scale(1.2);  /* 标题轻微放大 */
+}
+
+/* 卡片中的图片样式 */
+.project-card > img {
+  width: 100%;
+  height: 100%;  /* 使图片填充整个容器高度 */
+  transform: scale(1.1);  /* 图片轻微放大 */
+  transition: all 0.3s ease-in-out;  /* 过渡动画 */
+  object-fit: cover;  /* 保持图片比例并裁剪 */
+}
+
+/* 右侧项目描述区域 */
+.project-descriptions {
+  flex: 0 0 55%;  /* 占据55%宽度 */
+  padding: 20px;  /* 内边距 */
+  border-radius: 10px;  /* 圆角边框 */
+  background-color: var(--headerCOlor);  /* 背景色使用主题变量 */
+  color: var(--headerFont);  /* 文字颜色使用主题变量 */
+}
+
+/* 项目描述样式 */
+.project-description {
+  display: none;  /* 默认隐藏 */
+}
+
+/* 激活状态的描述样式 */
+.project-description.active {
+  display: block;  /* 显示描述 */
+}
+
+/* 描述标题样式 */
+.project-description h3 {
+  color: var(--headerFont);
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--mainColor);  /* 底部边框 */
+  padding-bottom: 10px;
+}
+
+/* 描述文本样式 */
+.project-description p {
+  margin-bottom: 15px;
+  line-height: 1.6;  /* 行高 */
+}
+
+/* 项目链接按钮样式 */
+.project-link {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 20px;
+  background-color: var(--mainColor);  /* 使用主题色 */
+  color: #fff;
+  border-radius: 20px;  /* 圆角按钮 */
+  text-decoration: none;
+  transition: all 0.3s ease;  /* 过渡动画 */
+}
+
+/* 链接按钮悬停效果 */
+.project-link:hover {
+  transform: translateY(-3px);  /* 向上浮动效果 */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);  /* 添加阴影 */
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+  .project-container {
+    flex-direction: column;  /* 改为垂直布局 */
+  }
+  
+  .project-list, 
+  .project-descriptions {
+    flex: 0 0 100%;  /* 占据全部宽度 */
+  }
+}
+
+/* 卡片描述文本区域 */
+.card-description {
+  position: absolute;
+  bottom: 0%;  /* 位于卡片下1/4位置 */
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);  /* 半透明背景 */
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  z-index: 2;  /* 确保在图片上方显示 */
+}
+
+.card-description p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* 项目描述中的图片容器 */
+.project-image {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.project-image img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}

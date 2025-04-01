@@ -1,0 +1,53 @@
+/* 工作经历样式 */
+.work-experience-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+.work-experience-box > div {
+  flex: 0 0 50%;
+  position: relative;
+}
+.work-experience-box > div::after {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 100%;
+  background-color: var(--headerCOlor);
+}
+
+.work-experience-box .carcontent {
+  min-height: 150px;
+  margin: 0 20px 20px;
+  padding: 30px;
+  box-sizing: content-box;
+}
+.work-experience-box .work-experience-pro {
+  position: relative;
+}
+.work-experience-pro:hover .carprogress {
+  opacity: 1;
+}
+.work-experience-box .carprogress {
+  transition: all .2s ease-in-out;
+  position: absolute;
+  right: -6px;
+  z-index: 1;
+  top: 10px;
+  width: 18px;
+  height: 18px;
+  background-color: var(--headerCOlor);
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 5px solid var(--mainColor);
+  opacity: .5;
+}
+
+/* 手机*/
+@media screen and (max-width: 550px) {
+  .work-experience-box {
+    display: block;
+  }
+} 
